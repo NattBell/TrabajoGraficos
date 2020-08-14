@@ -1,0 +1,101 @@
+---
+title: "Taller3_Graficos"
+author: "Nataly Silva"
+date: "13/8/2020"
+output: html_document
+---
+
+
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+```
+
+```{r}
+levels(fullDatos$tiponegocio)
+fullDatos$tiponegocio <- factor(fullDatos$tiponegocio)
+table(fullDatos$tiponegocio)
+```
+
+```{r}
+levels(fullDatos$comuna)
+fullDatos$comuna <- factor(fullDatos$comuna)
+table(fullDatos$comuna)
+```
+
+
+```{r}
+ggplot(fullDatos, aes(x=fullDatos$comuna))+
+scale_x_discrete(name = "comuna")+
+scale_y_continuous(name = "tiponegocio")+
+ggtitle(label = "Tipos de Negocios por comuna")+ 
+coord_flip()+
+geom_bar()
+
+```
+La variable escogida es "Tipos de Negocios" y "comunas"
+
+
+```{r}
+levels(fullDatos$precio)
+fullDatos$precio <- factor(fullDatos$precio)
+table(fullDatos$precio)
+summary(fullDatos$precio)
+
+```
+```{r}
+ggplot(fullDatos, aes(x=fullDatos$precio))+
+  scale_x_discrete(name = "precio")+
+  scale_y_continuous(name = "Frecuencia", breaks = seq(0,120,10), limits = c(0,50))+
+   ggtitle(label = "Precios")+ 
+     coord_flip()+
+  geom_bar()
+```
+
+```{r}
+levels(fullDatos$tiponegocio)
+table(fullDatos$tiponegocio)
+summary(fullDatos$tiponegocio)
+```
+
+```{r}
+ggplot(fullDatos, aes(x=fullDatos$tiponegocio))+
+  scale_x_discrete(name = "tiponegocio")+
+  scale_y_continuous(name = "Frecuencia", breaks = seq(0,120,10), limits = c(0,50))+
+   ggtitle(label = "Tipos de Negocios")+ 
+     coord_flip()+
+  geom_bar()
+```
+
+
+
+
+## El nombre "NA" se le otorga a aquellos datos vacios, esto sirve para no entorpecer el analisis de los datos, esto ocurre tanto para el caso de los "precios" como del dato "tiponegocio".(inclusive se utiliza para cualquier dato que almacene valores o data importante).
+
+
+## Cuando se extraen datos es necesario guardar estos en una base de datos para que puedan ser trabajados 
+## de forma ordenada y simple, es por ello que para guardar la data extraida de "Yapo" se deben seguir los siguientes pasos:
+
+## 1° File -> New file -> R Script => write.csv(nombre de la variable, 'direccion donde guardar el documento\nombre del documento.csv')
+
+## Para el caso del proyecto => 
+```{r}
+write.csv(fullDatos, ".\Users\Adm\Desktop\Taller3_BigData\Datos_Yapo.csv", fullDatos=";")
+```
+
+
+## 2° File -> Save As... y guardarlo en el lugar y con el nombre indicado anteriormente.
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
